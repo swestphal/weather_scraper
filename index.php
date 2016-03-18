@@ -1,25 +1,37 @@
 <?php
-
-if (isset($_POST['submit'])) {
+session_start();
+if (isset($_POST['submit']) && (($_POST['ort']))) {
     $ort = $_POST['ort'];
-    $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$ort}&sensor=false&language=en&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
+    $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$ort}&sensor=false&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
+//    $i = 0;
+//    while ($xml->result[$i]) {
+//        echo($xml->result[$i]->formatted_address);
+//        $i = $i + 1;
+//    }
+
+    if (!is_null($xml)) {
+        if (isset($xml->result->address_component[0]->long_name)) {
+            $cityEn = $xml->result->address_component[0]->long_name;
+        }
+    } else $_SESSION['error'] = "Diese Stadt ist nicht . Bitte versuch es noch einmal";
 
 
-    $cityEn = $xml->result->address_component[0]->long_name;
-    $cityEn = str_replace(' ', '-', $cityEn);
+    if (isset($cityEn) && (!is_null($cityEn))) {
 
-    $url = "http://www.weather-forecast.com/locations/{$cityEn}/forecasts/latest";
+        $cityEn = str_replace(' ', '-', $cityEn);
 
-    $weather_content = @file_get_contents($url);
- 
-    if ($weather_content) preg_match_all('/class="phrase">(.*?)<\/span><\/span><\/span><\/p>/s', $weather_content, $matches);
+        $url = "http://www.weather-forecast.com/locations/{$cityEn}/forecasts/latest";
+
+        $weather_content = @file_get_contents($url);
+
+        if ($weather_content) preg_match_all('/class="phrase">(.*?)<\/span><\/span><\/span><\/p>/s', $weather_content, $matches);
+
+    } else $_SESSION['error'] = "Die Stadt <strong>". $ort."</strong> ist nicht bekannt. Bitte versuchen Sie es noch einmal";
 
 }
 
 ?>
-<?php
 
-?>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -31,7 +43,7 @@ if (isset($_POST['submit'])) {
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="assets/js/bootstrap.js" type="text/javascript"></script>
-<body>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 heading">
@@ -45,10 +57,11 @@ if (isset($_POST['submit'])) {
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="input-group">
-                    <input type="text" name="ort" class="form-control" placeholder="Search for...">
+                <div class="input-group input-group-lg">
+                    <input type="text" name="ort" class="form-control" placeholder="Geben Sie den Ort ein...."
+                           autocomplete="off">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" name="submit" value="submit" type="submit">wie wird das
+                            <button class="btn btn-default" name="submit" value="submit" type="submit">Wie wird das
                                 Wetter?
                             </button>
                         </span>
@@ -56,8 +69,19 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </form>
+    <?php if (isset($_SESSION['error'])): ; ?>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 bottom">
+                <div class="alert alert-lg alert-danger">
+                    <?php
+                    echo $_SESSION['error'];
+                    ?>
+                </div>
+            </div>
+        </div>
+    <?php endif;
+    unset($_SESSION['error']); ?>
 </div>
-
 
 <?php if (isset($matches)):; ?>
     <div class="container">
@@ -65,7 +89,8 @@ if (isset($_POST['submit'])) {
             <div class="col-md-8 col-md-offset-2 heading">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <div class="panel-title ">Wettervorschau für <?php echo $_POST['ort']; ?>
+                        <div class="panel-title ">Wettervorschau
+                            für <?php echo ucwords($ort) == $cityEn ? $cityEn : ucwords($_POST['ort']); ?>
                         </div>
                     </div>
                     <div class="panel-body">
@@ -92,7 +117,8 @@ if (isset($_POST['submit'])) {
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse"
                                            data-parent="#accordion"
-                                           href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                           href="#collapseTwo" aria-expanded="false"
+                                           aria-controls="collapseTwo">
                                             4-6 Tage
                                         </a>
                                     </h4>
@@ -109,7 +135,8 @@ if (isset($_POST['submit'])) {
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse"
                                            data-parent="#accordion"
-                                           href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                           href="#collapseThree" aria-expanded="false"
+                                           aria-controls="collapseThree">
                                             7-10 Tage
                                         </a>
                                     </h4>

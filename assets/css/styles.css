@@ -8,7 +8,11 @@ html, body {
 }
 
 .heading p {
-    padding: 30px;
+    padding-bottom: 30px;
+}
+
+.bottom {
+    margin-top:10px;
 }
 
 .heading input:first-of-type {
@@ -21,4 +25,8 @@ html, body {
 
 div#accordion {
     margin-bottom: 0;
+}
+
+.panel.panel-info {
+    margin-top: 12px;
 }
