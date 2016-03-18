@@ -1,16 +1,24 @@
 <?php
 
 if (isset($_POST['submit'])) {
-$ort=str_replace(' ','-',$_POST['ort']);
+    $ort = $_POST['ort'];
+    $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$ort}&sensor=false&language=en&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
 
-    $url = "http://www.weather-forecast.com/locations/{$ort}/forecasts/latest";
-    $weather_content = file_get_contents($url);
 
-    preg_match('/class="phrase">(.*?)<\/span><\/span><\/span><\/p>/s', $weather_content, $matches);
+    $cityEn = $xml->result->address_component[0]->long_name;
+    $cityEn = str_replace(' ', '-', $cityEn);
+
+    $url = "http://www.weather-forecast.com/locations/{$cityEn}/forecasts/latest";
+    
+    $weather_content = @file_get_contents($url);
+    if ($weather_content) preg_match('/class="phrase">(.*?)<\/span><\/span><\/span><\/p>/s', $weather_content, $matches);
+
 }
 
 ?>
+<?php
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
