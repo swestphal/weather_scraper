@@ -1,0 +1,20 @@
+html, body {
+    background: url("/assets/images/fullbg.jpg") no-repeat 30% 60% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 5%;
+}
+
+.heading p {
+    padding: 30px;
+}
+
+.heading input:first-of-type {
+    margin-bottom: 10px;
+}
+
+.white {
+    color: whitesmoke;
+}
