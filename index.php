@@ -1,35 +1,16 @@
 <?php
-session_start();
+require_once("classes/session.php");
+require_once("classes/city.php");
+$session = new Session();
+
+
 if (isset($_POST['submit']) && (($_POST['ort']))) {
-    $ort = $_POST['ort'];
-    $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$ort}&sensor=false&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
-//    $i = 0;
-//    while ($xml->result[$i]) {
-//        echo($xml->result[$i]->formatted_address);
-//        $i = $i + 1;
-//    }
-
-    if (!is_null($xml)) {
-        if (isset($xml->result->address_component[0]->long_name)) {
-            $cityEn = $xml->result->address_component[0]->long_name;
-        }
-    } else $_SESSION['error'] = "Diese Stadt ist nicht . Bitte versuch es noch einmal";
 
 
-    if (isset($cityEn) && (!is_null($cityEn))) {
+    $input = $_POST['ort'];
 
-        $cityEn = str_replace(' ', '-', $cityEn);
-
-        $url = "http://www.weather-forecast.com/locations/{$cityEn}/forecasts/latest";
-
-        $weather_content = @file_get_contents($url);
-
-        if ($weather_content) preg_match_all('/class="phrase">(.*?)<\/span><\/span><\/span><\/p>/s', $weather_content, $matches);
-
-    } else $_SESSION['error'] = "Die Stadt <strong>". $ort."</strong> ist nicht bekannt. Bitte versuchen Sie es noch einmal";
 
 }
-
 ?>
 
 
@@ -69,28 +50,37 @@ if (isset($_POST['submit']) && (($_POST['ort']))) {
             </div>
         </div>
     </form>
-    <?php if (isset($_SESSION['error'])): ; ?>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 bottom">
-                <div class="alert alert-lg alert-danger">
-                    <?php
-                    echo $_SESSION['error'];
-                    ?>
-                </div>
-            </div>
-        </div>
-    <?php endif;
-    unset($_SESSION['error']); ?>
+<!--    --><?php //if (isset($_SESSION['error'])): ; ?>
+<!--        <div class="row">-->
+<!--            <div class="col-md-8 col-md-offset-2 bottom">-->
+<!--                <div class="alert alert-lg alert-danger">-->
+<!--                    --><?php
+//                    echo $_SESSION['error'];
+//                    ?>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    --><?php //endif;
+//    unset($_SESSION['error']); ?>
 </div>
 
-<?php if (isset($matches)):; ?>
+<?php if (isset($input)) {
+
+    City::find_weather($input); ?>
     <div class="container">
         <div class="row">
+        <?php if (Session::$message):;?>
+            <div class="col-md-8 col-md-offset-2 heading">
+                <div class="alert alert-warning " role="alert">
+                    <?php echo Session::check_message();?>
+                </div>
+            </div>
+        <?php
+        endif; ?>
             <div class="col-md-8 col-md-offset-2 heading">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <div class="panel-title ">Wettervorschau
-                            für <?php echo ucwords($ort) == $cityEn ? $cityEn : ucwords($_POST['ort']); ?>
+                        <div class="panel-title ">Wettervorschau für <?php echo City::$city_name_selected; ?>
                         </div>
                     </div>
                     <div class="panel-body">
@@ -108,7 +98,7 @@ if (isset($_POST['submit']) && (($_POST['ort']))) {
                                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
                                      aria-labelledby="headingOne">
                                     <div class="panel-body">
-                                        <?php echo $matches[1][0]; ?>
+                                        <?php echo City::find_weather($input)[1][0]; ?>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +116,7 @@ if (isset($_POST['submit']) && (($_POST['ort']))) {
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
                                      aria-labelledby="headingTwo">
                                     <div class="panel-body">
-                                        <?php echo $matches[1][1]; ?>
+                                        <?php echo City::find_weather($input)[1][1]; ?>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +134,7 @@ if (isset($_POST['submit']) && (($_POST['ort']))) {
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
                                      aria-labelledby="headingThree">
                                     <div class="panel-body">
-                                        <?php echo $matches[1][2]; ?>
+                                        <?php echo City::find_weather($input)[1][2]; ?>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +144,6 @@ if (isset($_POST['submit']) && (($_POST['ort']))) {
             </div>
         </div>
     </div>
-<?php endif; ?>
+<?php }; ?>
 </body>
 </html>
