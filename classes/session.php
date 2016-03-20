@@ -41,7 +41,7 @@ class Session
     public static function get_language()
     {
         // todo implement language checking and delete code below
-        self::$language="en";
+        self::$language="de";
         return self::$language;
     }
 

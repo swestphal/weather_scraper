@@ -82,6 +82,10 @@ class City
             //find cityname from input in english
             self::$city_name_en = self::find_cities($city, $lang = "en")[0];
             self::$city_name_selected = self::find_cities(self::$city_name_en, $lang = "de")[1];
+            // todo implement.... if writing of english = german like paris, london then
+            // take self::find_cities(self::$city_name_en, $lang = "de")[0];
+
+
             $first_english = substr(self::$city_name_en, 0, strpos(self::$city_name_en, ","));
             if (strpos((strtolower($city)), (strtolower($first_english)))) {
                 self::$city_name_en = $first_english;
