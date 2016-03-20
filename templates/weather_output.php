@@ -19,7 +19,7 @@
         <div class="col-md-8 col-md-offset-2 heading">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="panel-title ">Wettervorschau für <?php echo City::$city_name_selected; ?>
+                    <div class="panel-title ">Wettervorschau für <span id="city_selected"></span>
                     </div>
                 </div>
                 <div class="panel-body">

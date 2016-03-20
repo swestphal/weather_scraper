@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67913013-b1ef-47b8-b70d-5525cf00dd47" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/animalHandler.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/text" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/city.php" afterPath="$PROJECT_DIR$/classes/city.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraping.php" afterPath="$PROJECT_DIR$/scraping.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/city_input.php" afterPath="$PROJECT_DIR$/templates/city_input.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/weather_output.php" afterPath="$PROJECT_DIR$/templates/weather_output.php" />
     </list>
     <ignored path="weater_scraper.iws" />
@@ -33,8 +27,8 @@
             <file leaf-file-name="weather_output.php" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/templates/weather_output.php">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.7773852">
-                    <caret line="75" column="63" selection-start-line="75" selection-start-column="63" selection-end-line="75" selection-end-column="63" />
+                  <state vertical-scroll-proportion="0.36395758">
+                    <caret line="21" column="80" selection-start-line="21" selection-start-column="80" selection-end-line="21" selection-end-column="80" />
                     <folding />
                   </state>
                 </provider>
@@ -54,8 +48,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3870246">
-              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.64978904">
+              <caret line="60" column="127" selection-start-line="60" selection-start-column="127" selection-end-line="60" selection-end-column="127" />
               <folding />
             </state>
           </provider>
@@ -104,8 +98,8 @@
       <file leaf-file-name="scraping.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraping.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.222222">
-              <caret line="20" column="64" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="64" />
+            <state vertical-scroll-proportion="-10.222222">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -147,8 +141,8 @@
         <option value="$PROJECT_DIR$/templates/city_input.php" />
         <option value="$PROJECT_DIR$/text" />
         <option value="$PROJECT_DIR$/scraping.php" />
-        <option value="$PROJECT_DIR$/templates/weather_output.php" />
         <option value="$PROJECT_DIR$/classes/city.php" />
+        <option value="$PROJECT_DIR$/templates/weather_output.php" />
         <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
@@ -529,22 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/weather_output.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7773852">
-          <caret line="75" column="63" selection-start-line="75" selection-start-column="63" selection-end-line="75" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraping.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.222222">
-          <caret line="20" column="64" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/city.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.666667">
@@ -553,10 +531,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scraping.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.222222">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/weather_output.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36395758">
+          <caret line="21" column="80" selection-start-line="21" selection-start-column="80" selection-end-line="21" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3870246">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.64978904">
+          <caret line="60" column="127" selection-start-line="60" selection-start-column="127" selection-end-line="60" selection-end-column="127" />
           <folding />
         </state>
       </provider>
