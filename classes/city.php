@@ -23,8 +23,8 @@ class City
             $language = Session::get_language();
         } else $language = $lang;
 
-        $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyBJ7mA9FiZXFX5yybUegALUivIPr8INa3I");
-        // $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
+//        $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyBJ7mA9FiZXFX5yybUegALUivIPr8INa3I");
+         $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
 
         if ($xml) {
             foreach ($xml->result as $city) {
@@ -65,11 +65,16 @@ class City
         $weather_content = @file_get_contents($url);
         if ($weather_content) {
             preg_match_all('/class="phrase">(.*?)<\/span><\/span><\/span><\/p>/s', $weather_content, $matches);
+            foreach($matches as $key=>$value){
+                $matches[$key]=str_replace("&deg;","&#176;",$value);
+            }
+
             return $matches;
         } else {
             Session::set_message("Die Stadt <strong>" . self::$city_name_input . "</strong> ist nicht bekannt. Bitte versuchen Sie es noch einmal");
             return false;
         }
+
     }
 
 

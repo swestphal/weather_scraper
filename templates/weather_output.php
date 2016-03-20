@@ -37,7 +37,7 @@
                             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
                                  aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <?php echo City::find_weather($input)[1][0]; ?>
+                                   <div id="forecast_3days"></div>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
                                  aria-labelledby="headingTwo">
                                 <div class="panel-body">
-                                    <?php echo City::find_weather($input)[1][1]; ?>
+                                    <div id="forecast_3to6days"></div>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
                                  aria-labelledby="headingThree">
                                 <div class="panel-body">
-                                    <?php echo City::find_weather($input)[1][2]; ?>
+                                    <div id="forecast_7to10days"></div>
                                 </div>
                             </div>
                         </div>

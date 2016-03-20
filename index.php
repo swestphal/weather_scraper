@@ -1,16 +1,15 @@
 <?php
 require_once("classes/session.php");
 require_once("classes/city.php");
-$session = new Session();
 
 
-if (isset($_POST['submit']) && (($_POST['ort']))) {
-
-
-    $input = $_POST['ort'];
-
-
-}
+//if (isset($_POST['submit']) && (($_POST['ort']))) {
+//
+//
+//    $input = $_POST['ort'];
+//
+//
+//}
 ?>
 
 
@@ -34,11 +33,43 @@ if (isset($_POST['submit']) && (($_POST['ort']))) {
     include("templates/city_input.php");
 
 
-    if (isset($input)) {
-        City::find_weather($input);
-        include("templates/weather_output.php");
-    }; ?>
-
+    //    if (isset($_POST['city']) {
+    //        City::find_weather($input);
+    include("templates/weather_output.php");
+    //    };
+    ?>
+    <div id="txtHint"></div>
 </div>
 </body>
 </html>
+
+<script>
+
+    function showWeather() {
+        if ((document.getElementById("location")).length == 0) {
+
+        //todo if error ......
+            document.getElementById("message").innerHTML = "nix";
+
+            return;
+        }
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("forecast_3days").innerHTML = (xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0]).innerHTML;
+                document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
+                document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
+            }
+
+        };
+
+        xmlhttp.open("GET", "http://devweatherscraper/scraping.php?location="+document.getElementById('location').value, true);
+        xmlhttp.setRequestHeader("Content-type","text/xml");
+        xmlhttp.send();
+
+
+    }
+</script>
+

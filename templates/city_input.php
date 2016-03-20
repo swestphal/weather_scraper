@@ -6,14 +6,14 @@
 <!-- * Time: 08:50-->
 <!-- */-->
 <div class="container">
-    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+    <form>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="input-group input-group-lg">
-                    <input type="text" name="ort" class="form-control" placeholder="Geben Sie den Ort ein...."
+                    <input type="text" id="location" name="location" class="form-control" placeholder="Geben Sie den Ort ein...."
                            autocomplete="off">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" name="submit" value="submit" type="submit">Wie wird das
+                            <button class="btn btn-default" onclick="showWeather(); return false;">Wie wird das
                                 Wetter?
                             </button>
                         </span>
