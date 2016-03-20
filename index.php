@@ -62,12 +62,13 @@ require_once("classes/city.php");
                 document.getElementById("forecast_3days").innerHTML = (xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0]).innerHTML;
                 document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
                 document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
+            $(".collapse-container").collapse("show");
             }
         };
 
-        xmlhttp.open("GET", "http://devweatherscraper/scraping.php?location="+document.getElementById('location').value, true);
-        xmlhttp.setRequestHeader("Content-type","text/xml");
-        xmlhttp.send();
+        xmlhttp.open("POST", "http://devweatherscraper/scraping.php", true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("location="+document.getElementById('location').value);
 
 
     }

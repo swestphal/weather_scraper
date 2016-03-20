@@ -7,7 +7,7 @@ header('Pragma: no-cache');
 require_once("classes/session.php");
 require_once("classes/city.php");
 $session = new Session();
-$location = $_GET['location'];
+$location = $_POST['location'];
 
 $weather = City::find_weather($location);
 

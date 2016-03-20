@@ -6,7 +6,7 @@
 <!-- * Time: 08:50-->
 <!-- */-->
 
-<div class="container">
+<div class="container collapse-container collapse">
     <div class="row">
         <?php if (Session::$message):; ?>
             <div class="col-md-8 col-md-offset-2 heading">
