@@ -6,3 +6,6 @@
  * Time: 10:46
  */
 
+$city = $_Get['city'];
+return City::find_weather($city);
+ ?>

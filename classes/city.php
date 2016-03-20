@@ -80,7 +80,9 @@ class City
         //check if necessary
         if (Session::get_language() != "en") {
             //find cityname from input in english
+//            echo "deutsch".(self::find_cities("munich", $lang="de")[0]);
             self::$city_name_en = self::find_cities($city, $lang = "en")[0];
+
             self::$city_name_selected = self::find_cities(self::$city_name_en, $lang = "de")[1];
             $first_english = substr(self::$city_name_en, 0, strpos(self::$city_name_en, ","));
             if (strpos((strtolower($city)), (strtolower($first_english)))) {
