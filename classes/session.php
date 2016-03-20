@@ -10,7 +10,7 @@ class Session
 {
     private $signed_in = false;
     public static $message;
-    public static $language;
+    public static $language="de";
     public $user_id;
 
     public function __construct()

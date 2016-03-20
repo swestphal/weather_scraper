@@ -3,12 +3,12 @@ header("Content-type: text/xml");
 header('Cache-Control: no-cache');
 header('Pragma: no-cache');
 
-
+//
 require_once("classes/session.php");
 require_once("classes/city.php");
 $session = new Session();
 $location = $_POST['location'];
-
+//
 $weather = City::find_weather($location);
 
 echo '<?xml version="1.0" encoding="ISO-8859-1"?>';
