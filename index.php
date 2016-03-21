@@ -32,13 +32,15 @@ require_once("classes/city.php");
 
     include("templates/city_input.php");
 
-
-    //    if (isset($_POST['city']) {
-    //        City::find_weather($input);
-    include("templates/weather_output.php");
-    //    };
     ?>
-    <div id="txtHint"></div>
+    <div id="preloader"></div>
+
+    <?php
+
+    include("templates/weather_output.php");
+
+    ?>
+
 </div>
 </body>
 </html>
@@ -54,7 +56,8 @@ require_once("classes/city.php");
             return;
         }
         var xmlhttp = new XMLHttpRequest();
-
+        $(".collapse-container").collapse("hide");
+        document.getElementById("preloader").innerHTML ="<img src='assets/images/316.gif'>";
         xmlhttp.onreadystatechange = function () {
 
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -62,8 +65,10 @@ require_once("classes/city.php");
                 document.getElementById("forecast_3days").innerHTML = (xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0]).innerHTML;
                 document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
                 document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
+                document.getElementById("preloader").innerHTML ="";
             $(".collapse-container").collapse("show");
             }
+
         };
 
         xmlhttp.open("POST", "http://devweatherscraper/scraping.php", true);
