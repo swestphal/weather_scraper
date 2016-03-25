@@ -49,46 +49,58 @@ require_once("classes/city.php");
 </div>
 </body>
 </html>
-
+<script src="assets/js/vendor/what-input.min.js"></script>
+<script src="assets/js/foundation.min.js"></script>
+<script src="assets/js/app.js"></script>
 <script>
+var flag=0;
+    $('#findweather').click(function (event) {
+        $('input#location').attr("placeholder",".. Daten werden gesucht").val("").focus().blur();
+        showWeather();
+        event.preventDefault();
+    });
+
+    if (flag) {
+    }
 
     function showWeather() {
         if ((document.getElementById("location")).length == 0) {
 
-        //todo if error ......
+            //todo if error ......
             document.getElementById("message").innerHTML = "nix";
 
             return;
         }
         var xmlhttp = new XMLHttpRequest();
-//        $(".collapse-container").collapse("hide");
+
 //        document.getElementById("preloader").innerHTML ="<img src='assets/images/316.gif'>";
         xmlhttp.onreadystatechange = function () {
 
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("city_selected").innerHTML = (xmlhttp.responseXML.getElementsByTagName("city_selected")[0]).innerHTML;
-                document.getElementById("forecast_3days").innerHTML = (xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0]).innerHTML;
+                document.getElementById("city_selected").innerHTML = xmlhttp.responseXML.getElementsByTagName("city_selected")[0].innerHTML;
+                document.getElementById("forecast_3days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0].innerHTML;
                 document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
                 document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
-                document.getElementById("preloader").innerHTML ="";
-//            $(".collapse-container").collapse("show");
+                document.getElementById("preloader").innerHTML = "";
+                $(".container-output").show();
+                $("input#location").attr("placeholder","Bitte einen Ort eingeben..").val("").focus().blur();;
+
+
             }
 
         };
 
         xmlhttp.open("POST", "http://devweatherscraper/scraping.php", true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("location="+document.getElementById('location').value);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("location=" + document.getElementById('location').value);
 
 
     }
 
+    $(".container-output").hide();
+
     $(document).foundation();
 </script>
 
-<script src="assets/js/vendor/what-input.min.js"></script>
-<script src="assets/js/foundation.min.js"></script>
-<script src="assets/js/app.js"></script>
-<script>
-   
-</script>
+
+
