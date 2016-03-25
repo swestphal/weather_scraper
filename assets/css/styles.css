@@ -82,7 +82,7 @@ h6 {
 }
 
 .container-input .input-group-button input.button:hover {
-    opacity: initial;
+    opacity: 1;
     transition: all 0.6s ease 0s;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -124,12 +124,15 @@ h6 {
     border-top: none;
 }
 
-.tabs-title {
-
-    border-right: 1px solid;
+.tabs-title a{
+    transition: all 0.6s ease 0s;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-right: 1px solid #3E2852;
 }
 
-.tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
+.tabs-title > a:focus,
+.tabs-title > a[aria-selected='true'] {
     opacity: .7;
     background: #3E2852;
     color: #fff;
