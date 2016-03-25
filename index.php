@@ -28,7 +28,6 @@ require_once("classes/city.php");
           type='text/css'>
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
 <body>
 <div id="container">
     <div class="container">
@@ -67,7 +66,7 @@ require_once("classes/city.php");
     });
 
     $(document).ready(function () {
-        $('#container').fadeIn('slow');
+        $('#container').css("visibility","visible").fadeIn('slow');
         $('.container-welcome').css("padding-top", "25%");
         setTimeout(function() { $('.container-input').css('opacity',"1");},1000);
     });
