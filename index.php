@@ -18,11 +18,16 @@ require_once("classes/city.php");
 <head>
     <meta charset="UTF-8">
     <title>Weather Scraper</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="assets/fonts/linecons/style.css">
+    <link rel="stylesheet" href="assets/css/foundation.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css"/>
+    <link rel="stylesheet" href="assets/css/app.css"/>
+    <link rel="stylesheet" href="assets/css/core.css"/>
     <link href="assets/css/styles.css" rel="stylesheet" media="all">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900|Quantico:400,700' rel='stylesheet'
+          type='text/css'>
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="assets/js/bootstrap.js" type="text/javascript"></script>
 <body>
 
 <div class="container">
@@ -56,8 +61,8 @@ require_once("classes/city.php");
             return;
         }
         var xmlhttp = new XMLHttpRequest();
-        $(".collapse-container").collapse("hide");
-        document.getElementById("preloader").innerHTML ="<img src='assets/images/316.gif'>";
+//        $(".collapse-container").collapse("hide");
+//        document.getElementById("preloader").innerHTML ="<img src='assets/images/316.gif'>";
         xmlhttp.onreadystatechange = function () {
 
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -66,7 +71,7 @@ require_once("classes/city.php");
                 document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
                 document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
                 document.getElementById("preloader").innerHTML ="";
-            $(".collapse-container").collapse("show");
+//            $(".collapse-container").collapse("show");
             }
 
         };
@@ -77,5 +82,13 @@ require_once("classes/city.php");
 
 
     }
+
+    $(document).foundation();
 </script>
 
+<script src="assets/js/vendor/what-input.min.js"></script>
+<script src="assets/js/foundation.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+   
+</script>

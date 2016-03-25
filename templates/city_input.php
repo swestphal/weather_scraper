@@ -5,20 +5,21 @@
 <!-- * Date: 20.03.16-->
 <!-- * Time: 08:50-->
 <!-- */-->
-<div class="container">
+
+
+<div class="container container-input">
     <form>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="input-group input-group-lg">
-                    <input type="text" id="location" name="location" class="form-control" placeholder="Geben Sie den Ort ein...."
+            <div class="small-11 medium-8 small-centered columns">
+                <div class="input-group">
+                    <span class="input-group-label"><i class="li li_world"></i></span>
+                    <input class="input-group-field" type="text" id="location" name="location"
                            autocomplete="off">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" onclick="showWeather(); return false;">Wie wird das
-                                Wetter?
-                            </button>
-                        </span>
-                </div><!-- /input-group -->
-            </div>
+                    <div class="input-group-button">
+                        <button class="button" onclick="showWeather(); return false;">
+                    </div>
+                </div>
+            </div><!-- /input-group -->
         </div>
     </form>
 </div>

@@ -1,5 +1,5 @@
 html, body {
-    background: url("/assets/images/fullbg.jpg") no-repeat 30% 60% fixed;
+    background: url("/assets/images/background.png") no-repeat 30% 60% fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -7,37 +7,111 @@ html, body {
     padding-top: 5%;
 }
 
-.heading p {
-    padding-bottom: 30px;
+html *, body * {
+    color: #3E2852;
+    font-family: 'Quantico', sans-serif;
+    font-weight: 400;
 }
 
-.bottom {
-    margin-top:10px;
+hr {
+    margin: 3.25rem auto;
+
 }
 
-.heading input:first-of-type {
-    margin-bottom: 10px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
-.white {
-    color: whitesmoke;
+.container-welcome {
+    margin-bottom: 30px;
 }
 
-div#accordion {
-    margin-bottom: 0;
+.container-welcome h1 {
+    font-size: 4rem;
+    letter-spacing: normal;
+
 }
 
-.panel.panel-info {
-    margin-top: 12px;
+.container-input .input-group > * {
+    border-color: #3E2852;
+    opacity: 0.7;
 }
 
-div.alert {
-margin-top:30px;
-margin-bottom: 0;
-    font-size:16px;
+.container-input input#location {
+    opacity: .4;
+    background: #D8B9A5;
+
 }
 
-div#preloader img{
-display:block;
-margin:30px auto;
-margin-top:100px;}
+.container-input .input-group-button input.button {
+    opacity: 0.7;
+    background: #3E2852;
+    border: none;
+    border-top: 1px solid #3E2852;
+    transition: all 0.6s ease 0s;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.container-input .input-group-button input.button:hover {
+    opacity: initial;
+    transition: all 0.6s ease 0s;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.container-input .input-group-label,
+.container-input .input-group-button * {
+    background: rgba(201, 151, 139, .5);
+}
+
+.container-input i.li {
+    vertical-align: sub;
+}
+
+.container-output {
+
+}
+
+/*.heading p {*/
+/*padding-bottom: 30px;*/
+/*}*/
+
+/*.bottom {*/
+/*margin-top:10px;*/
+/*}*/
+
+/*.heading input:first-of-type {*/
+/*margin-bottom: 10px;*/
+/*}*/
+
+/*.white {*/
+/*color: whitesmoke;*/
+/*}*/
+
+/*div#accordion {*/
+/*margin-bottom: 0;*/
+/*}*/
+
+/*.panel.panel-info {*/
+/*margin-top: 12px;*/
+/*}*/
+
+/*div.alert {*/
+/*margin-top:30px;*/
+/*margin-bottom: 0;*/
+/*font-size:16px;*/
+/*}*/
+
+/*div#preloader img{*/
+/*display:block;*/
+/*margin:30px auto;*/
+/*margin-top:100px;}*/
