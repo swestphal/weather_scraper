@@ -23,8 +23,8 @@ class City
             $language = Session::get_language();
         } else $language = $lang;
 
-//       $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyBJ7mA9FiZXFX5yybUegALUivIPr8INa3I");
-        $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
+       $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyBJ7mA9FiZXFX5yybUegALUivIPr8INa3I");
+//        $xml = simplexml_load_file("https://maps.google.com/maps/api/geocode/xml?address={$input}&language={$language}&sensor=false&key=AIzaSyCFgdoH2WVDWfcmYXNU3VUwZDEir66AZcU");
 
         if ($xml) {
             foreach ($xml->result as $city) {

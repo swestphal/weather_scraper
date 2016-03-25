@@ -28,24 +28,26 @@ require_once("classes/city.php");
           type='text/css'>
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <body>
+<div id="container">
+    <div class="container">
 
-<div class="container">
+        <?php
+        include("templates/welcome_message.php");
 
-    <?php
-    include("templates/welcome_message.php");
+        include("templates/city_input.php");
 
-    include("templates/city_input.php");
+        ?>
+        <div id="preloader"></div>
 
-    ?>
-    <div id="preloader"></div>
+        <?php
 
-    <?php
+        include("templates/weather_output.php");
 
-    include("templates/weather_output.php");
+        ?>
 
-    ?>
-
+    </div>
 </div>
 </body>
 </html>
@@ -53,15 +55,23 @@ require_once("classes/city.php");
 <script src="assets/js/foundation.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
-var flag=0;
+
+    $("input#location").click(function(){
+         $(".container-output").fadeOut(2000);
+    });
+
     $('#findweather').click(function (event) {
-        $('input#location').attr("placeholder",".. Daten werden gesucht").val("").focus().blur();
+        $('input#location').attr("placeholder", ".. Daten werden gesucht").val("").focus().blur();
         showWeather();
         event.preventDefault();
     });
 
-    if (flag) {
-    }
+    $(document).ready(function () {
+        $('#container').fadeIn('slow');
+        $('.container-welcome').css("padding-top", "25%");
+        setTimeout(function() { $('.container-input').css('opacity',"1");},1000);
+    });
+
 
     function showWeather() {
         if ((document.getElementById("location")).length == 0) {
@@ -82,9 +92,8 @@ var flag=0;
                 document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
                 document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
                 document.getElementById("preloader").innerHTML = "";
-                $(".container-output").show();
-                $("input#location").attr("placeholder","Bitte einen Ort eingeben..").val("").focus().blur();;
-
+                $(".container-output").fadeIn('slow');
+                $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
 
             }
 
@@ -96,6 +105,7 @@ var flag=0;
 
 
     }
+
 
     $(".container-output").hide();
 
