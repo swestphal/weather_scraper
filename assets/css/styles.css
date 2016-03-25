@@ -1,6 +1,6 @@
 html, body {
-    background: #3E2852;
-    background: url("/assets/images/background.png") no-repeat 30% 60% fixed;
+    background: #D7BAA4;
+    /*background: url("/assets/images/background.png") no-repeat 30% 60% fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

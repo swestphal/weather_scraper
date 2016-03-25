@@ -67,8 +67,8 @@ require_once("classes/city.php");
 
     $(document).ready(function () {
         $('#container').css("visibility","visible").fadeIn('slow');
-        $('.container-welcome').css("padding-top", "25%");
-        setTimeout(function() { $('.container-input').css('opacity',"1");},1000);
+        $('.container-welcome').css("padding-top", "23%");
+        setTimeout(function() { $('.container-input').css('opacity',"1");},1500);
     });
 
 
