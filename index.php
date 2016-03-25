@@ -3,13 +3,6 @@ require_once("classes/session.php");
 require_once("classes/city.php");
 
 
-//if (isset($_POST['submit']) && (($_POST['ort']))) {
-//
-//
-//    $input = $_POST['ort'];
-//
-//
-//}
 ?>
 
 
@@ -55,8 +48,8 @@ require_once("classes/city.php");
 <script src="assets/js/app.js"></script>
 <script>
 
-    $("input#location").click(function(){
-         $(".container-output").fadeOut(2000);
+    $("input#location").click(function () {
+        $(".container-output").fadeOut(2000);
     });
 
     $('#findweather').click(function (event) {
@@ -66,9 +59,13 @@ require_once("classes/city.php");
     });
 
     $(document).ready(function () {
-        $('#container').css("visibility","visible").fadeIn('slow');
+        $('#container').css("visibility", "visible").fadeIn('slow');
         $('.container-welcome').css("padding-top", "23%");
-        setTimeout(function() { $('.container-input').css('opacity',"1");},1500);
+        setTimeout(function () {
+            $('.container-input').css('opacity', "1");
+        }, 1500);
+
+//        translate();
     });
 
 
@@ -87,12 +84,23 @@ require_once("classes/city.php");
 
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("city_selected").innerHTML = xmlhttp.responseXML.getElementsByTagName("city_selected")[0].innerHTML;
-                document.getElementById("forecast_3days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0].innerHTML;
-                document.getElementById("forecast_3to6days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML;
-                document.getElementById("forecast_7to10days").innerHTML = xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML;
+//                document.getElementById("forecast_3days").innerHTML = translate(xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0].innerHTML);
+//                document.getElementById("forecast_3to6days").innerHTML = translate(xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML);
+//                document.getElementById("forecast_7to10days").innerHTML = translate(xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML);
+
+//                forecast_3days = "<p>" + xmlhttp.responseXML.getElementsByTagName("forecast_3days")[0].innerHTML + "</p>";
+//                console.log(forecast_3days);
+                vorhersage = translate("Heavy rain (total 21mm), heaviest during Sat night. Very mild (max 15°C on Sat afternoon, min 6°C on Sat night). Winds increasing (calm on Fri night, gales from the SSW by Sun night.");
+                console.log(translate(vorhersage));
+                document.getElementById("forecast_3days").innerHTML = "<p>"+vorhersage+"</p>";
+                document.getElementById("forecast_3to6days").innerHTML = translate(xmlhttp.responseXML.getElementsByTagName("forecast_3to6days")[0].innerHTML);
+                document.getElementById("forecast_7to10days").innerHTML = translate(xmlhttp.responseXML.getElementsByTagName("forecast_7to10days")[0].innerHTML);
+
+
                 document.getElementById("preloader").innerHTML = "";
                 $(".container-output").fadeIn('slow');
                 $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
+
 
             }
 
@@ -104,6 +112,39 @@ require_once("classes/city.php");
 
 
     }
+
+    function translate(text) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+
+                var xml = xhttp.responseXML;
+                var items = $("item", xml);
+                text = "Heavy rain (total 21mm), heaviest during Sat night. Very mild (max 15°C on Sat afternoon, min 6°C on Sat night). Winds increasing (calm on Fri night, gales from the SSW by Sun night).";
+                for (var i = 0; i < items.length - 1; i++) {
+                    englisch = items[i].id;
+                    german = items[i].childNodes[0].nextSibling.innerHTML;
+                    var engl = new RegExp('\(\^\|\\b'+englisch+'\\b\)\(\?=\[\\s\,\.\-\]\)', 'gi');
+//                  regex (^|\bheavy\b)(?=[\s,.-])
+//var engl=new RegExp('\\b'+englisch+'\\b','gi');
+
+                    text=text.replace(engl, german);
+//                    text_ready = translation.replace("  ", " ");
+
+
+                }
+                console.log(text);
+                return text;
+
+//
+            }
+        };
+        xhttp.open("GET", "assets/languages/weather_translation.xml", true);
+        xhttp.send();
+
+
+    }
+
 
 
     $(".container-output").hide();

@@ -1,6 +1,6 @@
 html, body {
     background: #D7BAA4;
-    /*background: url("/assets/images/background.png") no-repeat 30% 60% fixed;*/
+    background: url("/assets/images/background.png") no-repeat 30% 60% fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -78,8 +78,8 @@ h6 {
 .container-input .input-group-button input.button {
     opacity: 0.7;
     background: #3E2852;
-
-    border-top: 1px solid #3E2852;
+border-bottom:none;
+    /*border-top: 1px solid #3E2852;*/
     transition: all 0.6s ease 0s;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -88,8 +88,7 @@ h6 {
 .container-input .input-group-button input.button:hover {
     opacity: 1;
     transition: all 0.6s ease 0s;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
+
 }
 
 .container-input .input-group-label {
@@ -104,11 +103,7 @@ h6 {
 
     opacity: 0.7;
     margin-top: 30px;
-    /*!*border: none;*!*/
-    /*border-top: 1px solid #3E2852;*/
-    /*transition: all 0.6s ease 0s;*/
-    /*-webkit-border-radius: 0;*/
-    /*-moz-border-radius: 0;*/
+
 }
 
 .container-output h3 {
@@ -130,8 +125,7 @@ h6 {
 
 .tabs-title a {
     transition: all 0.6s ease 0s;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
+
     border-right: 1px solid #3E2852;
 }
 
@@ -141,8 +135,6 @@ h6 {
     background: #3E2852;
     color: #fff;
     transition: all 0.6s ease 0s;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
 
 }
 
@@ -152,8 +144,7 @@ h6 {
     color: #fff;
     background: #3E2852;
     transition: all 0.6s ease 0s;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
+
 }
 
 .tabs-content {

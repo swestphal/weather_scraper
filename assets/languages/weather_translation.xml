@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <translations>
-    <item id="Some drizzle">
+    <item id="the">
+        <german></german>
+    </item>
 
+    <item id="by">
+        <german></german>
+    </item>
+
+    <item id="gales">
+        <german>Sturmwinde</german>
+    </item>
+
+    <item id="Some drizzle">
         <german>Etwas Nieselregen</german>
     </item>
 
     <item id="heaviest">
-
         <german>am stärksten</german>
+    </item>
+
+    <item id="Heavy rain">
+        <german>Starker Regen</german>
+    </item>
+
+    <item id="total">
+        <german>insgesamt</german>
+    </item>
+
+    <item id="Sat">
+        <german>Samstag</german>
     </item>
 
     <item id="Tue">
         <german>Dienstag</german>
+    </item>
+
+    <item id="during">
+        <german>während</german>
     </item>
 
     <item id="morning">
@@ -23,7 +49,7 @@
     </item>
 
     <item id="on">
-        <german></german>
+        <german>am</german>
     </item>
 
     <item id="Sun">
@@ -44,6 +70,10 @@
 
     <item id="light rain">
         <german>Leichter Regen</german>
+    </item>
+
+    <item id="light winds">
+        <german>Leichte Winde</german>
     </item>
 
     <item id="mostly">
@@ -74,6 +104,10 @@
         <german>Winde nehmen ab</german>
     </item>
 
+    <item id="Winds increasing">
+        <german>Winde nehmen zu</german>
+    </item>
+
     <item id="fresh winds">
         <german>frischer Wind</german>
     </item>
@@ -93,5 +127,14 @@
     <item id="calm by">
         <german>ruhig ab</german>
     </item>
+
+    <!--<item id="W">-->
+        <!--<german>Westen</german>-->
+    <!--</item>-->
+
+    <item id="SSW">
+        <german>Süd-Süd-West</german>
+    </item>
+
 
 </translations>
