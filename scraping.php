@@ -16,6 +16,7 @@ echo "<xmlresponse>";
 echo "<result>";
 echo "<message>".Session::check_message()."</message>";
 echo "<city_selected>".City::$city_name_selected."</city_selected>";
+echo "<city_selected_en>".City::$city_name_en."</city_selected_en>";
 echo "<forecast_3days>".$weather[1][0]."</forecast_3days>";
 echo "<forecast_3to6days>".$weather[1][1]."</forecast_3to6days>";
 echo "<forecast_7to10days>".$weather[1][2]."</forecast_7to10days>";

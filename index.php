@@ -53,12 +53,16 @@ Session::set_language("de");
 <script>
     $('#language').find('span').bind('click', getSpanId);
 
-    function ready(xml) {
+    function changeLanguage(xml) {
         new_language = xml['response'].getElementsByTagName('language')[0].innerHTML;
         console.log(new_language);
         console.log($(this));
         $('#language').find('span').removeClass('is-active');
-        $('#'+new_language).addClass('is-active');
+        $('#' + new_language).addClass('is-active');
+        $(".container-output").fadeOut(2000);
+        $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
+
+
     }
 
     function getSpanId() {
@@ -67,7 +71,7 @@ Session::set_language("de");
 //            console.log(data);
 //        });
 
-        getUrlInfo("setlanguage.php", "language=" + spanId, "", ready);
+        getUrlInfo("setlanguage.php", "language=" + spanId, "", changeLanguage);
     }
 
     $("input#location").click(function () {
@@ -82,7 +86,7 @@ Session::set_language("de");
 
     $(document).ready(function () {
         $('#container').css("visibility", "visible").fadeIn('slow');
-        $('.container-welcome').css("padding-top", "23%");
+        $('.container-welcome').css("padding-top", "10%");
         setTimeout(function () {
             $('.container-input').css('opacity', "1");
         }, 1500);
@@ -129,8 +133,7 @@ Session::set_language("de");
 
 
         document.getElementById("preloader").innerHTML = "";
-        $(".container-output").fadeIn('slow');
-        $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
+
     }
 
 
@@ -140,6 +143,14 @@ Session::set_language("de");
         console.log(text['passed_values']);
         var tags = text['response'].getElementsByTagName("result")[0].childNodes;
 
+        if ($('#en').hasClass('is-active')) {
+            var english = (text['response'].getElementsByTagName("city_selected_en")[0].innerHTML);
+            $('span#city_location').text(english);
+        } else {
+            var german = (text['response'].getElementsByTagName("city_selected")[0].innerHTML);
+
+            $('span#city_location').text(german);
+        }
 
         for (var j = 0; j < tags.length; j++) {
 //            var tagname = tags[j].tagName;
@@ -148,7 +159,8 @@ Session::set_language("de");
 
             getUrlInfo("assets/languages/weather_translation.xml", "", tags[j], translate);
         }
-
+        $(".container-output").fadeIn('slow');
+        $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
     }
 
 
@@ -180,7 +192,8 @@ Session::set_language("de");
         } else {
             console.log("englisch");
 
-        }  document.getElementById(tagname).innerHTML = tagcontent;
+        }
+        document.getElementById(tagname).innerHTML = tagcontent;
     }
 
 

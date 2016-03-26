@@ -84,7 +84,7 @@ h6 {
 }
 
 .container-welcome {
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     transition: all 1s ease-out 0s;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;

@@ -17,7 +17,7 @@
             <?php
         endif; ?>
         <div class="small-11 medium-8 small-centered columns">
-            <div class=""><h3>Wettervorschau für <span id="city_selected"></span></h3>
+            <div class=""><h3>Wettervorschau für <span id="city_location"></span></h3>
                 <ul class="tabs" data-tabs id="example-tabs">
                     <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">3 Tage</a></li>
                     <li class="tabs-title"><a href="#panel2">4-6 Tage</a></li>
