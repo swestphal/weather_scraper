@@ -41,7 +41,7 @@
     </item>
 
     <item id="morning">
-        <german>am Morgen</german>
+        <german>in der Früh</german>
     </item>
 
     <item id="Freeze-thaw conditions">
@@ -77,7 +77,7 @@
     </item>
 
     <item id="mostly">
-        <german>hauptsächlich</german>
+        <german>Hauptsächlich</german>
     </item>
 
     <item id="falling">
@@ -136,5 +136,23 @@
         <german>Süd-Süd-West</german>
     </item>
 
+    <item id="moderate winds">
+        <german>mittelstarke Winde</german>
+    </item>
 
+    <item id="Mon">
+        <german>Montag</german>
+    </item>
+
+    <item id="dry">
+        <german>trocken</german>
+    </item>
+
+    <item id="calm">
+        <german>ruhig</german>
+    </item>
+
+    <item id="strong winds">
+        <german>starker Wind</german>
+    </item>
 </translations>

@@ -1,8 +1,6 @@
 <?php
 require_once("classes/session.php");
 require_once("classes/city.php");
-
-
 ?>
 
 
@@ -25,6 +23,10 @@ require_once("classes/city.php");
 <div id="container">
     <div class="container">
 
+        <div id="language" class="language">
+            <span id="de" class="is-active">de</span>
+            <span id="en">en</span>
+        </div>
         <?php
         include("templates/welcome_message.php");
 
@@ -47,6 +49,11 @@ require_once("classes/city.php");
 <script src="assets/js/foundation.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
+    $('#language').find('span').bind('click', getSpanId);
+
+    function getSpanId() {
+        var spanId = ($(this).attr('id'));
+    }
 
     $("input#location").click(function () {
         $(".container-output").fadeOut(2000);
@@ -141,7 +148,7 @@ require_once("classes/city.php");
             englisch = items[i].id;
             german = items[i].childNodes[0].nextSibling.innerHTML;
 
-            var engl = new RegExp('\(\^\|\\b' + englisch + '\\b\)\(\?=\[\\s\,\.\-\]\)', 'gi');
+            var engl = new RegExp('\(\^\|\\b' + englisch + '\\b\)\(\?=\[\\s\)\,\.\-\]\)', 'gi');
             // var engl=new RegExp(^|\bheavy\b)(?=[\s,.-])
             //var engl = new RegExp('/\\b'+englisch+'\\b','gi');
 
