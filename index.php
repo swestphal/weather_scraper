@@ -1,6 +1,8 @@
 <?php
 require_once("classes/session.php");
 require_once("classes/city.php");
+session_start();
+Session::set_language("de");
 ?>
 
 
@@ -51,8 +53,21 @@ require_once("classes/city.php");
 <script>
     $('#language').find('span').bind('click', getSpanId);
 
+    function ready(xml) {
+        new_language = xml['response'].getElementsByTagName('language')[0].innerHTML;
+        console.log(new_language);
+        console.log($(this));
+        $('#language').find('span').removeClass('is-active');
+        $('#'+new_language).addClass('is-active');
+    }
+
     function getSpanId() {
         var spanId = ($(this).attr('id'));
+        //        $.get('getlanguage.php', function ( data ) {
+//            console.log(data);
+//        });
+
+        getUrlInfo("setlanguage.php", "language=" + spanId, "", ready);
     }
 
     $("input#location").click(function () {
@@ -138,26 +153,34 @@ require_once("classes/city.php");
 
 
     function translate(response) {
-        var dictionary = response['response'];
-        var tagname = response['passed_values'].tagName;
         var tagcontent = response['passed_values'].innerHTML;
+        var tagname = response['passed_values'].tagName;
 
-        var items = $("item", dictionary);
+        if ($('#de').attr('class') == 'is-active') {
 
-        for (var i = 0; i < items.length; i++) {
-            englisch = items[i].id;
-            german = items[i].childNodes[0].nextSibling.innerHTML;
+            var dictionary = response['response'];
+            var tagcontent = response['passed_values'].innerHTML;
 
-            var engl = new RegExp('\(\^\|\\b' + englisch + '\\b\)\(\?=\[\\s\)\,\.\-\]\)', 'gi');
-            // var engl=new RegExp(^|\bheavy\b)(?=[\s,.-])
-            //var engl = new RegExp('/\\b'+englisch+'\\b','gi');
+            var items = $("item", dictionary);
+
+            for (var i = 0; i < items.length; i++) {
+                englisch = items[i].id;
+                german = items[i].childNodes[0].nextSibling.innerHTML;
+
+                var engl = new RegExp('\(\^\|\\b' + englisch + '\\b\)\(\?=\[\\s\)\,\.\-\]\)', 'gi');
+                // var engl=new RegExp(^|\bheavy\b)(?=[\s,.-])
+                //var engl = new RegExp('/\\b'+englisch+'\\b','gi');
 
 
-            tagcontent = tagcontent.replace(engl, german);
-            tagcontent = tagcontent.replace("  ", " ");
+                tagcontent = tagcontent.replace(engl, german);
+                tagcontent = tagcontent.replace("  ", " ");
 
-        }
-        document.getElementById(tagname).innerHTML = tagcontent;
+            }
+
+        } else {
+            console.log("englisch");
+
+        }  document.getElementById(tagname).innerHTML = tagcontent;
     }
 
 

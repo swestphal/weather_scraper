@@ -10,7 +10,7 @@ class Session
 {
     private $signed_in = false;
     public static $message;
-    public static $language="de";
+    public static $language;
     public $user_id;
 
     public function __construct()
@@ -25,7 +25,7 @@ class Session
     {
         if (!empty($message)) {
 
-            self::$message=$_SESSION['message'] = $message;
+            self::$message = $_SESSION['message'] = $message;
         }
     }
 
@@ -41,8 +41,20 @@ class Session
     public static function get_language()
     {
         // todo implement language checking and delete code below
-        self::$language="de";
-        return self::$language;
+        if (!isset($_SESSION['language'])) {
+            $_SESSION['language'] = "de";
+            self::$language = "de";
+        } else {
+            $_SESSION['language'] = self::$language;
+            return self::$language;
+        }
+    }
+
+    public static function set_language($lang)
+    {
+        // todo implement language checking and delete code below
+        self::$language = $lang;
+        $_SESSION['language'] = $lang;
     }
 
 
