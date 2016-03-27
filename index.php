@@ -1,8 +1,15 @@
 <?php
+session_start();
 require_once("classes/session.php");
 require_once("classes/city.php");
-session_start();
-Session::set_language("de");
+
+if (isset($_SESSION['language'])) {
+    $file = $_SESSION['language'] . ".ini";
+} else {
+    $_SESSION['language'] = "de";
+    $file = $_SESSION['language'] . ".ini";
+}
+$translation = parse_ini_file("assets/languages/" . $file);
 ?>
 
 
@@ -10,7 +17,7 @@ Session::set_language("de");
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Scraper</title>
+    <title> Weather Scraper </title>
     <link rel="stylesheet" href="assets/fonts/linecons/style.css">
     <link rel="stylesheet" href="assets/css/foundation.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css"/>
@@ -26,12 +33,12 @@ Session::set_language("de");
     <div class="container">
 
         <div id="language" class="language">
-            <span id="de" class="is-active">de</span>
-            <span id="en">en</span>
+            <span id="de" class="<?php if ($_SESSION['language']=="de") echo "is-active";?>"> de</span>
+            <span id="en" class="<?php if ($_SESSION['language']=="en") echo "is-active";?>"> en</span>
         </div>
         <?php
         include("templates/welcome_message.php");
-
+        echo $_SESSION['language'];
         include("templates/city_input.php");
 
         ?>
@@ -51,46 +58,56 @@ Session::set_language("de");
 <script src="assets/js/foundation.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
-    $('#language').find('span').bind('click', getSpanId);
-
-    function changeLanguage(xml) {
-        new_language = xml['response'].getElementsByTagName('language')[0].innerHTML;
-        console.log(new_language);
-        console.log($(this));
-        $('#language').find('span').removeClass('is-active');
-        $('#' + new_language).addClass('is-active');
-        $(".container-output").fadeOut(2000);
-        $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
 
 
-    }
+//    function changeLanguage(xml) {
+//        var new_language = xml['response'].getElementsByTagName('language')[0].innerHTML;
+//
+//        $('#language').find('span').removeClass('is-active');
+//        $('#' + new_language).addClass('is-active');
+//
+//        location.reload(true);
+//
+//    }
 
     function getSpanId() {
         var spanId = ($(this).attr('id'));
-        //        $.get('getlanguage.php', function ( data ) {
-//            console.log(data);
-//        });
-
-        getUrlInfo("setlanguage.php", "language=" + spanId, "", changeLanguage);
+        $.get("setlanguage.php?language="+spanId);
+        $('#language').find('span').removeClass('is-active');
+        $('#' + spanId).addClass('is-active');
+        location.reload(true);
     }
 
     $("input#location").click(function () {
         $(".container-output").fadeOut(2000);
     });
 
-    $('#findweather').click(function (event) {
-        $('input#location').attr("placeholder", ".. Daten werden gesucht").val("").focus().blur();
+    function parse_language(translate) {
+
+        $.getJSON('getsitetranslation.php', function (json) {
+            $.each(json, function (i, item) {
+                if (i == translate) {
+                console.log(translate,"-",i);
+                    $('input#location').attr("placeholder", item).val("").focus().blur();
+                }
+            });
+        });
+    }
+
+    $('#findweather').click(function () {
+        parse_language('FORECAST_WAIT');
+
         showWeather();
         event.preventDefault();
     });
 
     $(document).ready(function () {
+
         $('#container').css("visibility", "visible").fadeIn('slow');
         $('.container-welcome').css("padding-top", "10%");
         setTimeout(function () {
             $('.container-input').css('opacity', "1");
         }, 1500);
-
     });
 
     function xhrSuccess() {
@@ -139,8 +156,6 @@ Session::set_language("de");
 
     function splitTags(text) {
 
-        console.log(text['response']);
-        console.log(text['passed_values']);
         var tags = text['response'].getElementsByTagName("result")[0].childNodes;
 
         if ($('#en').hasClass('is-active')) {
@@ -160,7 +175,7 @@ Session::set_language("de");
             getUrlInfo("assets/languages/weather_translation.xml", "", tags[j], translate);
         }
         $(".container-output").fadeIn('slow');
-        $("input#location").attr("placeholder", "Bitte einen Ort eingeben..").val("").focus().blur();
+        $("input#location").attr("placeholder", parse_language('INPUT_PLACEHOLDER')).val("").focus().blur();
     }
 
 
@@ -196,7 +211,7 @@ Session::set_language("de");
         document.getElementById(tagname).innerHTML = tagcontent;
     }
 
-
+    $('#language').find('span').bind('click', getSpanId);
     $(".container-output").hide();
 
     $(document).foundation();

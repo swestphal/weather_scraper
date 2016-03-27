@@ -11,7 +11,7 @@
         <div class="container container-welcome">
             <h1 class="">meteo.</h1>
             <h2>
-                Bitte gebe eine Stadt ein, um das Wetter vor Ort zu ermitteln
+                <?php echo $translation['HEADER_SUBLINE'];?>
             </h2>
         </div>
     </div>

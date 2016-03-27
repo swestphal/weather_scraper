@@ -15,9 +15,9 @@ class Session
 
     public function __construct()
     {
-        session_start();
-        session_destroy();
-        self::$language = $this->get_language();
+//        session_start();
+//        session_destroy();
+//        self::$language = $this->get_language();
 
     }
 
@@ -41,9 +41,10 @@ class Session
     public static function get_language()
     {
         // todo implement language checking and delete code below
-        if (!isset($_SESSION['language'])) {
+        if ((!isset($_SESSION['language'])) || (empty($_SESSION['language']))) {
             $_SESSION['language'] = "de";
             self::$language = "de";
+            return self::$language;
         } else {
             $_SESSION['language'] = self::$language;
             return self::$language;
