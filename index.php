@@ -56,10 +56,7 @@ $translation = parse_ini_file("assets/languages/" . $file);
 <script src="assets/js/vendor/what-input.min.js"></script>
 <script src="assets/js/foundation.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
 
-    
-</script>
 
 
 

@@ -1,17 +1,23 @@
-$(document).foundation();
 
-var wait = null;
-function parse_language(translate) {
+var placeholder=null;
+var obj={};
+
+function parse_language(translate, varia) {
 
     $.getJSON('getsitetranslation.php', function (json) {
         $.each(json, function (i, item) {
             if (i == translate) {
-                wait = item;
+                $.fn.delegateJSONResult(item,varia);
             }
         });
     });
 }
 
+$.fn.delegateJSONResult= function(item,varia){
+obj[varia]=item;
+
+
+};
 //    function changeLanguage(xml) {
 //        var new_language = xml['response'].getElementsByTagName('language')[0].innerHTML;
 //
@@ -36,7 +42,7 @@ $("input#location").click(function () {
 
 
 $('#findweather').click(function () {
-    $('input#location').attr("placeholder",wait).val("").focus().blur();
+    $('input#location').attr("placeholder",obj['wait']).val("").focus().blur();
 
     showWeather();
     event.preventDefault();
@@ -83,7 +89,6 @@ function showWeather() {
 
         return;
     }
-    parse_language('INPUT_PLACEHOLDER');
 
     getUrlInfo("http://devweatherscraper/scraping.php", "location=" + document.getElementById('location').value, "", splitTags);
 
@@ -116,7 +121,7 @@ function splitTags(text) {
         getUrlInfo("assets/languages/weather_translation.xml", "", tags[j], translate);
     }
     $(".container-output").fadeIn('slow');
-    $("input#location").attr("placeholder", parse_language('INPUT_PLACEHOLDER')).val("").focus().blur();
+    $("input#location").attr("placeholder", obj['input']).val("").focus().blur();
 }
 
 
@@ -152,7 +157,11 @@ function translate(response) {
     document.getElementById(tagname).innerHTML = tagcontent;
 }
 
-parse_language('FORECAST_WAIT');
+parse_language('FORECAST_WAIT','wait');
+
+parse_language('INPUT_PLACEHOLDER','input');
+
 $('#language').find('span').bind('click', getSpanId);
 $(".container-output").hide();
+$(document).foundation();
 
