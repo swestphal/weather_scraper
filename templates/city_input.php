@@ -15,7 +15,7 @@
                     <span class="input-group-label"><i class="li li_world"></i></span>
                     <input class="input-group-field" type="text" id="location" name="location" autocomplete="off" placeholder="<?php echo $translation['INPUT_PLACEHOLDER'];?>" >
                     <div class="input-group-button">
-                        <input type="submit" id="findweather" class="button" onclick="showWeather(); return false;" value="<?php echo $translation['INPUT_BUTTON'];?>">
+                        <input type="submit" id="findweather" class="button" value="<?php echo $translation['INPUT_BUTTON'];?>">
                     </div>
                 </div>
             </div><!-- /input-group -->

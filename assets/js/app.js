@@ -1,20 +1,19 @@
-
-var placeholder=null;
-var obj={};
+var placeholder = null;
+var obj = {};
 
 function parse_language(translate, varia) {
 
     $.getJSON('getsitetranslation.php', function (json) {
         $.each(json, function (i, item) {
             if (i == translate) {
-                $.fn.delegateJSONResult(item,varia);
+                $.fn.delegateJSONResult(item, varia);
             }
         });
     });
 }
 
-$.fn.delegateJSONResult= function(item,varia){
-obj[varia]=item;
+$.fn.delegateJSONResult = function (item, varia) {
+    obj[varia] = item;
 
 
 };
@@ -41,12 +40,23 @@ $("input#location").click(function () {
 });
 
 
-$('#findweather').click(function () {
-    $('input#location').attr("placeholder",obj['wait']).val("").focus().blur();
+$('form').on('submit', function (event) {
+    if ((document.getElementById("location")).length == 0) {
 
-    showWeather();
-    event.preventDefault();
-});
+        //todo if error ......
+        document.getElementById("message").innerHTML = "nix";
+
+        return;
+    } else {
+        var location=$('input#location').val();
+        $('input#location').attr("placeholder", obj['wait']).val("").focus().blur();
+        console.log(location);
+        showWeather(location);
+        event.preventDefault();
+        return false;
+    }
+})
+;
 
 $(document).ready(function () {
 
@@ -81,7 +91,7 @@ function getUrlInfo(url, parameter, pass, callback) {
 }
 
 
-function showWeather() {
+function showWeather(location) {
     if ((document.getElementById("location")).length == 0) {
 
         //todo if error ......
@@ -90,7 +100,7 @@ function showWeather() {
         return;
     }
 
-    getUrlInfo("http://devweatherscraper/scraping.php", "location=" + document.getElementById('location').value, "", splitTags);
+    getUrlInfo("scraping.php", "location=" + location, "", splitTags);
 
 //        document.getElementById("preloader").innerHTML ="<img src='assets/images/316.gif'>";
 
@@ -157,11 +167,11 @@ function translate(response) {
     document.getElementById(tagname).innerHTML = tagcontent;
 }
 
-parse_language('FORECAST_WAIT','wait');
+parse_language('FORECAST_WAIT', 'wait');
 
-parse_language('INPUT_PLACEHOLDER','input');
+parse_language('INPUT_PLACEHOLDER', 'input');
 
 $('#language').find('span').bind('click', getSpanId);
 $(".container-output").hide();
 $(document).foundation();
-
+$(document).foundation('tab', 'reflow');
